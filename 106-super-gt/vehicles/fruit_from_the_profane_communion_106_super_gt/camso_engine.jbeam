@@ -1,0 +1,433 @@
+{
+    "Engine": {
+        "information": {
+            "authors": "JMA Automotive",
+            "name": "U6-QFC-H"
+        },
+        "slotType": "Engine",
+        "slots": [
+            [
+                "type",
+                "default",
+                "description"
+            ],
+            [
+                "Camso_DSE",
+                "Camso_DSE",
+                "Car Assist Control"
+            ],
+            [
+                "Transmission",
+                "Transmission",
+                "Transmission"
+            ]
+        ],
+        "powertrain": [
+            [
+                "type",
+                "name",
+                "inputName",
+                "inputIndex"
+            ],
+            [
+                "combustionEngine",
+                "mainEngine",
+                "dummy",
+                0
+            ]
+        ],
+        "mainEngine": {
+            "torque": [
+                [
+                    "rpm",
+                    "torque"
+                ],
+                [
+                    0,
+                    0
+                ],
+                [
+                    250,
+                    496.253875739645
+                ],
+                [
+                    500,
+                    497.66804733727815
+                ],
+                [
+                    750,
+                    499.0220414201184
+                ],
+                [
+                    1000,
+                    500.31585798816576
+                ],
+                [
+                    1250,
+                    501.5494970414202
+                ],
+                [
+                    1500,
+                    502.72295857988166
+                ],
+                [
+                    1750,
+                    503.8362426035503
+                ],
+                [
+                    2000,
+                    504.88934911242603
+                ],
+                [
+                    2250,
+                    505.88227810650886
+                ],
+                [
+                    2500,
+                    506.8150295857988
+                ],
+                [
+                    2750,
+                    507.6876035502959
+                ],
+                [
+                    3000,
+                    508.50000000000006
+                ],
+                [
+                    3250,
+                    509.25221893491124
+                ],
+                [
+                    3500,
+                    509.9442603550296
+                ],
+                [
+                    3750,
+                    510.576124260355
+                ],
+                [
+                    4000,
+                    511.1478106508876
+                ],
+                [
+                    4250,
+                    511.65931952662726
+                ],
+                [
+                    4500,
+                    512.110650887574
+                ],
+                [
+                    4750,
+                    512.5018047337278
+                ],
+                [
+                    5000,
+                    512.8327810650889
+                ],
+                [
+                    5250,
+                    513.1035798816569
+                ],
+                [
+                    5500,
+                    513.3142011834319
+                ],
+                [
+                    5750,
+                    513.4646449704143
+                ],
+                [
+                    6000,
+                    513.5549112426036
+                ],
+                [
+                    6250,
+                    513.585
+                ],
+                [
+                    6500,
+                    513.5549112426036
+                ],
+                [
+                    6750,
+                    513.4646449704143
+                ],
+                [
+                    7000,
+                    513.3142011834319
+                ],
+                [
+                    7250,
+                    513.1035798816569
+                ],
+                [
+                    7500,
+                    512.8327810650889
+                ]
+            ],
+            //rev limiters have some options
+            //"revLimiterType":"rpmDrop", //Default choice. waits for rpm to fall before torque comes back. Can have long delays in high gears. Uses "revLimiterRPMDrop".
+            //"revLimiterType":"timeBased", //Waits for "revLimiterCutTime" time window, but also has "revLimiterMaxRPMDrop" fallback, if the rpm falls too much in the time window.
+            //"revLimiterType:"soft", //Tapers the the torque off in some range of rpm defined by "revLimiterSmoothOvershootRPM"
+            //"hasRevLimiter":false, //Disables rev limiter
+            "revLimiterRPMDrop": 100,
+            //engine performance
+            "idleRPM": 700,
+            "maxRPM": 7500, //Max RPM before overrev damage is likely
+            "inertia": 0.25, //(kg*m/s^2)
+            "friction": 10.0, //Constant friction torque (Nm)
+            "dynamicFriction": 0.0, //Friction torque that increases with engine speed (Nm/rad/s)
+            "waterDamage": {
+                "[engineGroup]:": [
+                    "engine_intake"
+                ]
+            }, //Engine hydrolocks when nodes in this group go under water
+            "radiator": {
+                "[engineGroup]:": [
+                    "radiator"
+                ]
+            }, //Radiator steam is emitted from nodes in this group
+            "engineBlock": {
+                "[engineGroup]:": [
+                    "engine_block"
+                ]
+            }, //Engine thermal mass is taken from nodes in this group
+            //"fuel": {"[engineGroup]:":["fuel"]},
+            "breakTriggerBeam": "engine", //Engine breaks if beam with this name is broken
+            "soundConfig": "soundConfig", //What section name to look for for engine sound information
+            //Exhaust Settings
+            "particulates": 0.031500000223517,
+            //Exhaust Sound/back fires
+            "instantAfterFireCoef": 0.89999997317791,
+            "sustainedAfterFireCoef": 1.3499999597669,
+            "instantVolumeCoef": 0.75,
+            "sustainedVolumeCoef ": 0.75,
+            "shiftVolumeCoef ": 2,
+            //cooling and oil system,
+            "thermalsEnabled": true,
+            "engineBlockMaterial": "aluminium", //"aluminum", "aluminium", "iron"
+            //cooling system
+            "radiatorArea": 1.494703165233,
+            "radiatorEffectiveness": 20000,
+            "coolantVolume": 6.2513583834518,
+            "radiatorFanType": "electric",
+            "radiatorFanTemperature": 105,
+            "radiatorFanMaxAirSpeed": 2,
+            "thermostatTemperature": 90,
+            //oil radiator
+            "oilRadiatorArea": 6.2513583834518,
+            "oilRadiatorEffectiveness": 2000,
+            "oilThermostatTemperature": 100,
+            "oilVolume": 4.9385187875889, //Litres
+            //engine durability
+            "cylinderWallTemperatureDamageThreshold": 310, //Cylinder temp (C) over which damage starts to occur to rings
+            "headGasketDamageThreshold": 9999999, //Durability of headgasket
+            "pistonRingDamageThreshold": 9999999, //Durability of headgasket
+            "connectingRodDamageThreshold": 9999999, //Durability of connecting rods
+            "energyStorage": "mainTank", //Name of the fuel tank
+            "requiredEnergyType": "gasoline", //Type of fuel required
+            "burnEfficiency": [ //How much fuel energy is converted to work in the cylinders (does not account for engine friction losses)
+                [
+                    0.00,
+                    1.00
+                ],
+                [
+                    0.05,
+                    1.00
+                ],
+                [
+                    0.40,
+                    1.00
+                ],
+                [
+                    0.70,
+                    1.00
+                ],
+                [
+                    1.00,
+                    1.00
+                ]
+            ],
+            "torqueReactionNodes:": [
+                "engine0",
+                "engine1",
+                "engine2"
+            ]
+        },
+        "vehicleController": {
+            //https://wiki.beamng.com/VehicleController
+            //I will put commonly used values below
+            //universally useful values
+            "calculateOptimalLoadShiftPoints": true, //The high shift points ones can be auto calculated
+            //"shiftDownRPMOffsetCoef":1.3, //Can spread the downshift points for auto calculation if it tends to hunt too much (choose lower number to spread more)
+            "lowShiftDownRPM": 1300,
+            "highShiftDownRPM": 5125,
+            "lowShiftUpRPM": 6500,
+            "highShiftUpRPM": 7475,
+            "topSpeedLimit": 1000 //Speed limiter in m/s
+            //may want to increase values below for ultra high powered cars. On our drag cars they are set to 99999 to effectively disable
+            //"wheelSlipUpThreshold":7000, //A wheelspin threshold to stop arcade/auto gearbox from upshifting while spinning the tires or drifting
+            //"wheelSlipDownThreshold":10000, //A wheelspin threshold to stop arcade/auto gearbox from downshifting when locking the brakes
+        },
+        "soundConfig": {
+            "sampleName": "18A4E52B46EA1B369515669BA26EC3E0",
+            "mainGain": 7.5,
+            "maxLoadMix": 1,
+            "minLoadMix": 0,
+            "onLoadGain": 1.1,
+            "offLoadGain": 0.8,
+            "eqLowGain": 0,
+            "eqLowFreq": 400,
+            "eqLowWidth": 1,
+            "eqHighGain": 1.21,
+            "eqHighFreq": 6000,
+            "eqHighWidth": 0.5,
+            "lowCutFreq": 80,
+            //"fundamentalFrequencyCylinderCount":4,
+            "eqFundamentalGain": 0
+        }
+    },
+    "Transmission": {
+        "information": {
+            "authors": "JMA Automotive",
+            "name": "Transmission"
+        },
+        "slotType": "Transmission",
+        "slots": [
+            [
+                "type",
+                "default",
+                "description"
+            ]
+        ],
+        "controller": [
+            [
+                "fileName"
+            ],
+            [
+                "drivingDynamics/actuators/activeDiffBias",
+                {
+                    "name": "activeDiffBiasRear",
+                    "differentialName": "rearDiff",
+                    "maxBiasOffset": 0.30
+                }
+            ]
+        ],
+        "variables": [
+            ["name",        "type",  "unit", "category",      "default", "min", "max", "title",        "description"],
+            ["$gear1",      "range", ":1",   "Gearbox",       7.00,      0.05,  20.00, "First Gear",   "Torque Multiplier", { "stepDis": 0.01 }],
+            ["$gear2",      "range", ":1",   "Gearbox",       3.50,      0.05,  20.00, "Second Gear",  "Torque Multiplier", { "stepDis": 0.01 }],
+            ["$gear3",      "range", ":1",   "Gearbox",       2.33,      0.05,  20.00, "Third Gear",   "Torque Multiplier", { "stepDis": 0.01 }],
+            ["$gear4",      "range", ":1",   "Gearbox",       1.75,      0.05,  20.00, "Fourth Gear",  "Torque Multiplier", { "stepDis": 0.01 }],
+            ["$gear6",      "range", ":1",   "Gearbox",       1.16,      0.05,  20.00, "Sixth Gear",   "Torque Multiplier", { "stepDis": 0.01 }],
+            ["$gearR",      "range", ":1",   "Gearbox",       0.47,      0.05,  20.00, "Reverse Gear", "Torque Multiplier", { "stepDis": 0.01 }],
+            ["$gear5",      "range", ":1",   "Gearbox",       1.40,      0.05,  20.00, "Fifth Gear",   "Torque Multiplier", { "stepDis": 0.01 }],
+            ["$gear7",      "range", ":1",   "Gearbox",       1.00,      0.05,  20.00, "Seventh Gear", "Torque Multiplier", { "stepDis": 0.01 }],
+            ["$gear8",      "range", ":1",   "Gearbox",       0.87,      0.05,  20.00, "Eighth Gear",  "Torque Multiplier", { "stepDis": 0.01 }],
+            ["$gear9",      "range", ":1",   "Gearbox",       0.47,      0.05,  20.00, "Ninth Gear",   "Torque Multiplier", { "stepDis": 0.01 }],
+            ["$centreDiff", "range", "%",    "Differentials", 0.30,      0.01,  1.00,  "Torque Split", "What % of power goes to the front wheels"],
+            ["$finalDrive", "range", ":1",   "Gearbox",       2.20,      0.01,  20.00, "Final Drive",  "Torque Multiplier", { "stepDis": 0.01 }]
+        ],
+        "gearbox": {
+            //https://wiki.beamng.com/DctGearbox
+            "gearRatios": [ "$gearR", 0, "$gear1", "$gear2", "$gear3", "$gear4", "$gear5", "$gear6", "$gear7", "$gear8", "$gear9"],
+            "friction": 0, //Constant friction torque on input shaft
+            "parkLockTorque": 1000 //Maximum holding torque of park mode
+        },
+        "vehicleController": {
+            //dct useful values
+            "automaticModes": "PRNDSM", //Add or remove P,R,N,D,S,M,L,1,2 from the string to customize modes
+            "clutchLaunchStartRPM": 1500, //RPM where launching behavior starts
+            "clutchLaunchTargetRPM": 3500, //RPM it tries to maintain while launching
+            "revMatchThrottle": 0.25, //Controls shift rev match assist. Reduce this value to as much as 0.25 for high powered engines
+            "transmissionShiftDelay": 0, //Added time to shift if it didnt have the right gear preselected
+            "dctClutchTime": 0, //How fast it can shift in ideal case (either a correct shift or act of preselecting)
+            "gearboxNode:": [
+                "engine0"
+            ] //node used to play gear damage sound
+        },
+        "powertrain": [
+            ["type",         "name",            "inputName",      "inputIndex"],
+            ["dctGearbox",   "gearbox",         "mainEngine",      1],
+            ["differential", "centreDiff",      "mainEngine",      1,             { "diffType": "open", "gearRatio": 1.0, "diffTorqueSplit": "$centreDiff" }],
+            ["shaft",        "frontDriveshaft", "centreDiff",      1],
+            ["differential", "frontDiff",       "frontDriveshaft", 1,             { "diffType": "torqueVectoring", "gearRatio": "$finalDrive", "uiName": "Differential", "defaultVirtualInertia": 0.25}],
+            ["shaft",        "wheelaxleFL",     "frontDiff",       1,             {"connectedWheel": "FL", "friction": 0 }],
+            ["shaft",        "wheelaxleFR",     "frontDiff",       2,             {"connectedWheel": "FR", "friction": 0 }],
+            ["shaft",        "rearDriveshaft",  "centreDiff",      2],
+            ["differential", "rearDiff",        "rearDriveshaft",  1,             { "diffType": "torqueVectoring", "gearRatio": "$finalDrive", "uiName": "Differential", "defaultVirtualInertia": 0.25 }],
+            ["shaft",        "wheelaxleRL",     "rearDiff",        1,             { "connectedWheel": "RL", "friction": 0 }],
+            ["shaft",        "wheelaxleRR",     "rearDiff",        2,             { "connectedWheel": "RR", "friction": 0 }]
+        ]
+    },
+    "Camso_FuelTank": {
+        "information": {
+            "name": "Fuel Tank",
+            "value": 250
+        },
+        "slotType": "Camso_FuelTank",
+        "flexbodies": [
+            [
+                "mesh",
+                "[group]:",
+                "nonFlexMaterials"
+            ]
+        ],
+        "variables": [
+            [
+                "name",
+                "type",
+                "unit",
+                "category",
+                "default",
+                "min",
+                "max",
+                "title",
+                "description"
+            ],
+            [
+                "$fuel",
+                "range",
+                "L",
+                "Engine",
+                41.25,
+                0,
+                55,
+                "Fuel Volume",
+                "Initial Fuel Volume",
+                {
+                    "stepDis": 0.5
+                }
+            ]
+        ],
+        "energyStorage": [
+            [
+                "type",
+                "name"
+            ],
+            [
+                "fuelTank",
+                "mainTank"
+            ]
+        ],
+        "mainTank": {
+            "energyType": "gasoline", //Type of fuel (must match engine for engine to run)
+            "fuelCapacity": 55, //Litres
+            "startingFuelCapacity": "$fuel", //Litres
+            "fuel": {
+                "[engineGroup]:": [
+                    "fuel"
+                ]
+            }, //Adds fuel mass to nodes in this engineGroup
+            "breakTriggerBeam": "fuelTank" //Fuel tank drains if beam with this name is broken
+        },
+        "nodes": [
+            //add nodes here in an engineGroup called "fuel" as indicated above. The physics will add fuel mass to these nodes
+        ],
+        "beams": [
+            //breakTriggerBeam here can cause fuel tank to rupture in crash (drains the fuel slowly)
+        ]
+    }
+}
